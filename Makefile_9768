@@ -1,19 +1,21 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -pthread
 
+SERVER = server_9768
+CLIENT = client_9768
+
 SERVER_SRC = server_9768.c
 CLIENT_SRC = client_9768.c
 
-SERVER_BIN = server_9768
-CLIENT_BIN = client_9768
+all: $(SERVER) $(CLIENT)
 
-all: $(SERVER_BIN) $(CLIENT_BIN)
+$(SERVER): $(SERVER_SRC)
+	$(CC) $(CFLAGS) $(SERVER_SRC) -o $(SERVER)
 
-$(SERVER_BIN): $(SERVER_SRC)
-	$(CC) $(CFLAGS) -o $(SERVER_BIN) $(SERVER_SRC)
-
-$(CLIENT_BIN): $(CLIENT_SRC)
-	$(CC) $(CFLAGS) -o $(CLIENT_BIN) $(CLIENT_SRC)
+$(CLIENT): $(CLIENT_SRC)
+	$(CC) $(CFLAGS) $(CLIENT_SRC) -o $(CLIENT)
 
 clean:
-	rm -f $(SERVER_BIN) $(CLIENT_BIN) *.o
+	rm -f $(SERVER) $(CLIENT)
+
+.PHONY: all clean
