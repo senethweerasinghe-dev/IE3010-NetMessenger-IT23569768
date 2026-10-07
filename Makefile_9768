@@ -1,0 +1,19 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -pthread
+
+SERVER_SRC = server_9768.c
+CLIENT_SRC = client_9768.c
+
+SERVER_BIN = server_9768
+CLIENT_BIN = client_9768
+
+all: $(SERVER_BIN) $(CLIENT_BIN)
+
+$(SERVER_BIN): $(SERVER_SRC)
+	$(CC) $(CFLAGS) -o $(SERVER_BIN) $(SERVER_SRC)
+
+$(CLIENT_BIN): $(CLIENT_SRC)
+	$(CC) $(CFLAGS) -o $(CLIENT_BIN) $(CLIENT_SRC)
+
+clean:
+	rm -f $(SERVER_BIN) $(CLIENT_BIN) *.o
